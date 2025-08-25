@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comentarios con CRUD y MySQL</title>
+    <style>
+        #comentarios {
+            width: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        #comentarios h3 {
+            margin-top: 0;
+        }
+
+        .comentario {
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .nombre {
+            font-weight: bold;
+        }
+
+        .texto {
+            margin: 5px 0;
+        }
+
+        .botonesComentario button {
+            margin-right: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+        }
+
+        #listaComentarios {
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="comentarios">
+        <h3>Comentarios</h3>
+
+        <div id="listaComentarios">
+            <!-- Comentarios aquí -->
+        </div>
+
+        <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+        <button id="btnPublicar">Publicar</button>
+    </div>
+
+    <script>
+        // Simulación: usuario actual y video actual
+        const currentUserId = 1; // Cambia esto por tu lógica de sesión real
+        const currentVideoId = 1; // ID del video actual
+
+        const listaComentarios = document.getElementById('listaComentarios');
+        const textareaComentario = document.getElementById('nuevoComentario');
+        const btnPublicar = document.getElementById('btnPublicar');
+
+        async function cargarComentarios() {
+            try {
+                const res = await fetch(`http://localhost:3000/comentarios?id_video=${currentVideoId}`);
+                const comentarios = await res.json();
+                listaComentarios.innerHTML = '';
+                comentarios.forEach(({ id_comment, id_user, nickname, comments }) => {
+                    const div = crearComentarioElement(id_comment, id_user, nickname, comments);
+                    listaComentarios.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Error cargando comentarios:', error);
+            }
+        }
+
+        function crearComentarioElement(id_comment, id_user, nickname, comments) {
+            const div = document.createElement('div');
+            div.className = 'comentario';
+
+            const nombreElem = document.createElement('div');
+            nombreElem.className = 'nombre';
+            nombreElem.textContent = nickname;
+
+            const textoElem = document.createElement('div');
+            textoElem.className = 'texto';
+            textoElem.textContent = comments;
+
+            const botonesDiv = document.createElement('div');
+            botonesDiv.className = 'botonesComentario';
+
+            // Botón editar solo si el comentario es del usuario actual
+            const btnEditar = document.createElement('button');
+            btnEditar.textContent = 'Editar';
+
+            if (id_user === currentUserId) {
+                btnEditar.onclick = () => editarComentario(div, id_comment, textoElem, btnEditar);
+            } else {
+                btnEditar.disabled = true;
+            }
+
+            // Botón borrar solo si es del usuario actual
+            const btnBorrar = document.createElement('button');
+            btnBorrar.textContent = 'Borrar';
+
+            if (id_user === currentUserId) {
+                btnBorrar.onclick = () => borrarComentario(div, id_comment);
+            } else {
+                btnBorrar.disabled = true;
+            }
+
+            botonesDiv.appendChild(btnEditar);
+            botonesDiv.appendChild(btnBorrar);
+
+            div.appendChild(nombreElem);
+            div.appendChild(textoElem);
+            div.appendChild(botonesDiv);
+
+            return div;
+        }
+
+        async function agregarComentario() {
+            const comments = textareaComentario.value.trim();
+            if (!comments) {
+                alert('El comentario no puede estar vacío');
+                return;
+            }
+            try {
+                const res = await fetch('http://localhost:3000/comentarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_user: currentUserId, id_video: currentVideoId, comments }),
+                });
+
+                if (!res.ok) {
+                    const errorData = await res.json();
+                    alert('Error al agregar comentario: ' + errorData.error);
+                    return;
+                }
+
+                const nuevoComentario = await res.json();
+                const div = crearComentarioElement(nuevoComentario.id_comment, nuevoComentario.id_user, nuevoComentario.nickname, nuevoComentario.comments);
+                listaComentarios.prepend(div);
+                textareaComentario.value = '';
+            } catch (error) {
+                alert('Error de conexión');
+                console.error(error);
+            }
+        }
+
+        async function borrarComentario(div, id_comment) {
+            if (!confirm('¿Seguro que quieres borrar este comentario?')) return;
+
+            try {
+                const res = await fetch(`http://localhost:3000/comentarios/${id_comment}?id_user=${currentUserId}`, { method: 'DELETE' });
+
+                if (res.ok) {
+                    div.remove();
+                } else {
+                    const errorData = await res.json();
+                    alert('Error al borrar comentario: ' + errorData.error);
+                }
+            } catch (error) {
+                alert('Error de conexión');
+                console.error(error);
+            }
+        }
+
+        function editarComentario(div, id_comment, textoElem, btnEditar) {
+            if (btnEditar.textContent === 'Editar') {
+                const inputTextoEdit = document.createElement('textarea');
+                inputTextoEdit.value = textoElem.textContent;
+                inputTextoEdit.style.width = '100%';
+                inputTextoEdit.style.marginTop = '5px';
+
+                div.replaceChild(inputTextoEdit, textoElem);
+                btnEditar.textContent = 'Guardar';
+
+                btnEditar.onclick = async () => {
+                    const nuevoTexto = inputTextoEdit.value.trim();
+                    if (!nuevoTexto) {
+                        alert('El comentario no puede estar vacío');
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch(`http://localhost:3000/comentarios/${id_comment}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ comments: nuevoTexto, id_user: currentUserId }),
+                        });
+
+                        if (res.ok) {
+                            textoElem.textContent = nuevoTexto;
+                            div.replaceChild(textoElem, inputTextoEdit);
+                            btnEditar.textContent = 'Editar';
+                            btnEditar.onclick = () => editarComentario(div, id_comment, textoElem, btnEditar);
+                        } else {
+                            const errorData = await res.json();
+                            alert('Error al guardar comentario: ' + errorData.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión');
+                        console.error(error);
+                    }
+                };
+            }
+        }
+
+        btnPublicar.onclick = agregarComentario;
+
+        window.onload = cargarComentarios;
+    </script>
+</body>
+
+</html>
