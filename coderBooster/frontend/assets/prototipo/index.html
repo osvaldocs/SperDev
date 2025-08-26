@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoderBoost - Boost Your Programming Knowledge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Sidebar -->
+    <div class="fixed left-0 top-0 h-full w-20 bg-primary shadow-lg z-50">
+        <div class="p-4">
+            <!-- Logo CB para todas las páginas -->
+            <div class="flex items-center justify-center mb-8 mt-4">
+                <div>
+                    <img src="/prototipo/assets/Logoblanco CoderBoost.png" alt="CoderBoost Logo" class="h-12 w-auto">
+                </div>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="#" onclick="showPage('home')"
+                    class="nav-item flex items-center justify-center p-3 rounded-lg text-white hover:bg-white hover:bg-opacity-10 transition-all duration-200"
+                    data-page="home">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                </a>
+                <a href="#" onclick="showPage('workshops')"
+                    class="nav-item flex items-center justify-center p-3 rounded-lg text-white hover:bg-white hover:bg-opacity-10 transition-all duration-200"
+                    data-page="workshops">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                    </svg>
+                </a>
+                <a href="#" onclick="showPage('player')"
+                    class="nav-item flex items-center justify-center p-3 rounded-lg text-white hover:bg-white hover:bg-opacity-10 transition-all duration-200"
+                    data-page="player">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-20 min-h-screen">
+        <!-- Home Page -->
+        <div id="home" class="page active p-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Logo CoderBoost -->
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center justify-center mb-0">
+                        <img src="/prototipo/assets/Logo largo CoderBoost.png" alt="CoderBoost Logo"
+                            class="h-20 w-auto">
+                    </div>
+                </div>
+
+                <!-- AI Welcome Section -->
+                <div class="bg-gradient-to-r from-accent to-pink rounded-2xl p-4 mb-6 mt-1 text-white">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Welcome back, Coder! 👋</h2>
+                            <p class="text-white text-opacity-90">Ready to boost your programming skills today?</p>
+                        </div>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search workshops, topics, or ask me anything..."
+                            class="w-full p-4 rounded-xl bg-white bg-opacity-20 backdrop-blur-sm text-white placeholder-white placeholder-opacity-70 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                        <button
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 p-2 rounded-lg hover:bg-opacity-30 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Workshop Categories -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Workshop Categories</h3>
+                    <div class="flex flex-wrap gap-3">
+
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">🐍</span>
+                            <h4 class="font-medium text-primary text-sm">Python</h4>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">⚛️</span>
+                            <h4 class="font-medium text-primary text-sm">React</h4>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">🗄️</span>
+                            <h4 class="font-medium text-primary text-sm">Databases</h4>
+                        </div>
+
+                        <!-- nuevas categorías -->
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">🎨</span>
+                            <h4 class="font-medium text-primary text-sm">CSS</h4>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">📄</span>
+                            <h4 class="font-medium text-primary text-sm">HTML</h4>
+                        </div>
+
+
+                        <div
+                            class="bg-white rounded-md px-3 py-2 shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-200 inline-flex items-center gap-2">
+                            <span class="text-lg">✨</span>
+                            <h4 class="font-medium text-primary text-sm">JavaScript</h4>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- Featured Videos -->
+                <div>
+                    <h3 class=" text-2xl font-bold text-primary mb-6">Featured Videos</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div
+                            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="h-40 bg-gradient-to-br from-accent to-pink flex items-center justify-center">
+                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-semibold text-primary mb-2">Advanced Python Decorators</h4>
+                                <p class="text-gray-600 text-sm mb-2">Learn how to create powerful
+                                    decorators</p>
+                                <span class="text-xs text-accent">45 min • Module 3</span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="h-40 bg-gradient-to-br from-green to-yellow flex items-center justify-center">
+                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-semibold text-primary mb-2">React Hooks Masterclass</h4>
+                                <p class="text-gray-600 text-sm mb-2">Master useState, useEffect and custom
+                                    hooks</p>
+                                <span class="text-xs text-accent">60 min • Module 2</span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="h-40 bg-gradient-to-br from-orange to-pink flex items-center justify-center">
+                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-semibold text-primary mb-2">Database Optimization</h4>
+                                <p class="text-gray-600 text-sm mb-2">Speed up your queries and improve
+                                    performance</p>
+                                <span class="text-xs text-accent">38 min • Module 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workshop Gallery Page -->
+        <div id="workshops" class="page p-8">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-primary mb-8">Workshop Gallery</h2>
+
+                <!-- Filters -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <div class="flex space-x-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Module</label>
+                            <select
+                                class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent">
+                                <option>All Modules</option>
+                                <option>Module 1</option>
+                                <option>Module 2</option>
+                                <option>Module 3</option>
+                                <option>Module 4</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Topic</label>
+                            <select
+                                class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent">
+                                <option>All Topics</option>
+                                <option>Python</option>
+                                <option>React</option>
+                                <option>Databases</option>
+                                <option>Security</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button
+                                class="bg-accent text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all">Apply
+                                Filters</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Video items -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
+                        onclick="showPage('player')">
+                        <div
+                            class="h-48 bg-gradient-to-br from-accent to-pink flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">45:32</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">Python Fundamentals</h4>
+                            <p class="text-gray-600 text-sm mb-3">Learn the basics of Python programming</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 1</span>
+                                <span class="text-xs text-gray-500">2.1k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div
+                            class="h-48 bg-gradient-to-br from-green to-yellow flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">32:15</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">React Components</h4>
+                            <p class="text-gray-600 text-sm mb-3">Building reusable React components</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 2</span>
+                                <span class="text-xs text-gray-500">1.8k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div
+                            class="h-48 bg-gradient-to-br from-orange to-pink flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">28:45</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">SQL Queries</h4>
+                            <p class="text-gray-600 text-sm mb-3">Master complex SQL queries</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 3</span>
+                                <span class="text-xs text-gray-500">3.2k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div
+                            class="h-48 bg-gradient-to-br from-accent to-green flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">52:18</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">API Security</h4>
+                            <p class="text-gray-600 text-sm mb-3">Secure your APIs effectively</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 4</span>
+                                <span class="text-xs text-gray-500">1.5k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div
+                            class="h-48 bg-gradient-to-br from-pink to-yellow flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">41:22</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">Advanced Algorithms</h4>
+                            <p class="text-gray-600 text-sm mb-3">Optimize your code performance</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 3</span>
+                                <span class="text-xs text-gray-500">2.7k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div
+                            class="h-48 bg-gradient-to-br from-green to-accent flex items-center justify-center relative">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">36:54</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-semibold text-primary mb-2">Testing Strategies</h4>
+                            <p class="text-gray-600 text-sm mb-3">Write effective unit tests</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-accent">Module 2</span>
+                                <span class="text-xs text-gray-500">1.9k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Player Page -->
+        <div id="player" class="page p-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    <!-- Video Player -->
+                    <div class="col-span-1 lg:col-span-2">
+                        <div class="bg-black rounded-xl overflow-hidden mb-6">
+                            <div
+                                class="aspect-video bg-gradient-to-br from-accent to-pink flex items-center justify-center relative">
+                                <button
+                                    class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all"
+                                    onclick="togglePlay()">
+                                    <svg id="playIcon" class="w-8 h-8 text-white ml-1" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <div class="flex items-center space-x-4 text-white">
+                                        <span class="text-sm">15:32</span>
+                                        <div class="flex-1 bg-white bg-opacity-30 rounded-full h-1">
+                                            <div class="bg-white h-1 rounded-full w-1/3"></div>
+                                        </div>
+                                        <span class="text-sm">45:32</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 mb-6">
+                            <h2 class="text-2xl font-bold text-primary mb-4">Python Fundamentals - Variables and Data
+                                Types</h2>
+                            <div class="flex items-center space-x-4 text-gray-600 mb-4">
+                                <span>📅 2 days ago</span>
+                                <span>⏱️ 45 minutes</span>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="bg-white rounded-xl p-6 lg:col-span-2">
+                            <h3 class="text-lg font-semibold text-primary mb-6">Comments (2)</h3>
+                            <div class="space-y-6">
+                                <div class="flex space-x-4">
+                                    <div
+                                        class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white font-semibold">
+                                        JS</div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="font-semibold text-primary">John Smith</span>
+                                            <span class="text-gray-500 text-sm">2 hours ago</span>
+                                        </div>
+                                        <p class="text-gray-700 mb-2">This explanation of variables was really clear!
+                                            The examples helped me
+                                            understand the concept much better.</p>
+                                        <div class="flex space-x-4 text-sm text-gray-500">
+                                            <button class="hover:text-accent">👍 12</button>
+                                            <button class="hover:text-accent">Reply</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex space-x-4">
+                                    <div
+                                        class="w-10 h-10 bg-green rounded-full flex items-center justify-center text-white font-semibold">
+                                        MK</div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="font-semibold text-primary">Maria Kim</span>
+                                            <span class="text-gray-500 text-sm">5 hours ago</span>
+                                        </div>
+                                        <p class="text-gray-700 mb-2">Could you make a follow-up video about advanced
+                                            data structures? This was a
+                                            great introduction!</p>
+                                        <div class="flex space-x-4 text-sm text-gray-500">
+                                            <button class="hover:text-accent">👍 8</button>
+                                            <button class="hover:text-accent">Reply</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t pt-4">
+                                    <div class="flex space-x-4">
+                                        <div
+                                            class="w-10 h-10 bg-pink rounded-full flex items-center justify-center text-white font-semibold">
+                                            YU</div>
+                                        <div class="flex-1">
+                                            <textarea placeholder="Add a comment..."
+                                                class="w-full border border-gray-300 rounded-lg p-3 resize-none focus:outline-none focus:ring-2 focus:ring-accent"
+                                                rows="3"></textarea>
+                                            <div class="flex justify-end mt-2">
+                                                <button
+                                                    class="bg-accent text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all">Post
+                                                    Comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Chat -->
+                    <div class="bg-white rounded-xl p-6 self-start lg:row-span-2">
+                        <h3 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            AI Assistant
+                        </h3>
+                        <div class="space-y-4 mb-4 max-h-[70vh] overflow-y-auto">
+                            <div class="bg-gray-50 rounded-lg p-3">
+                                <p class="text-sm text-gray-700">Hi! I'm here to help you understand this video. Feel
+                                    free to ask me any
+                                    questions about Python variables and data types!</p>
+                            </div>
+                            <div class="bg-accent bg-opacity-10 rounded-lg p-3 ml-8">
+                                <p class="text-sm text-gray-700">What's the difference between a list and a tuple?</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3">
+                                <p class="text-sm text-gray-700">Great question! Lists are mutable (can be changed) and
+                                    use square brackets
+                                    [], while tuples are immutable (cannot be changed) and use parentheses (). Lists are
+                                    better for data that
+                                    changes, tuples for fixed data.</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="Ask me anything..."
+                                class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
+                            <button
+                                class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón para abrir el modal -->
+        <button id="openModalBtn">Subir video</button>
+
+        <!-- Modal para subir video -->
+        <div id="uploadModal" style="display:none;">
+            <div class="modal-content">
+                <h2>Subir nuevo video</h2>
+                <form id="uploadVideoForm">
+                    <label for="videoFile">Archivo de video:</label>
+                    <input type="file" id="videoFile" name="videoFile" accept="video/*" required><br><br>
+
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" required><br><br>
+
+                    <label for="category">Categoría:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="programacion">Programación</option>
+                        <option value="basesdedatos">Bases de datos</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                    </select><br><br>
+
+                    <label for="user">Usuario:</label>
+                    <select id="user" name="user" required>
+                        <option value="">Selecciona un usuario</option>
+                        <option value="admin">Admin</option>
+                        <option value="editor">Editor</option>
+                        <option value="invitado">Invitado</option>
+                    </select><br><br>
+
+                    <button type="submit">Subir</button>
+                    <button type="button" id="closeModalBtn">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="js/main.js"></script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'972c3585d1517b05',t:'MTc1NTgwMTEwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
