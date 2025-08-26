@@ -15,7 +15,7 @@ export const getAllComments = async (id_video) => {
 };
 
 
-export const postComment = async () => {
+export const postComments = async () => {
     
     const query = `INSERT INTO comments (id_user, id_video, comments, comment_date) VALUES (?, ?, ?, NOW())`;
 

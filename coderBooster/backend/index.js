@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import videosRoutes from "./modules/videos/videos.routes.js";
 import cloudinary from "./cloudinary.js";
 import searchVideos from "./modules/search/search.routes.js";
+import Comments from "./modules/comments/comment.routes.js"
 
 dotenv.config();
 cloudinary.config();
@@ -18,6 +19,7 @@ app.use(express.json()); // To handle JSON in requests
 // Routes
 app.use("/videos", videosRoutes);
 app.use("/search", searchVideos);
+app.use("/comment", Comments)
 
 // Start the server
 app.listen(3000, () => {
