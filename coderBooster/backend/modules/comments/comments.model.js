@@ -54,4 +54,4 @@ export const deleteComments = async (id_comment) => {
     const deleteQuery = `DELETE FROM comments WHERE id_comment = ?`;
     const [result] = await db.query(deleteQuery, [id_comment]);
     return result
-}
+};
