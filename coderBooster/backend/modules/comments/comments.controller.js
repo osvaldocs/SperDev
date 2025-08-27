@@ -1,4 +1,4 @@
-import { getAllComments, postComment, updateComments, deleteComments } from "./comments.model.js";
+import { getAllComments, postComments, updateComments, deleteComments } from "./comments.model.js";
 
 export const getComent = async (req, res) => {
     const {id_video} =req.params;
@@ -8,7 +8,7 @@ export const getComent = async (req, res) => {
 
 export const createComment = async (req, res) =>{
     const {id_user, id_video, comments} = req.body;
-    const newComment = await postComment (id_user, id_video, comments);
+    const newComment = await postComments (id_user, id_video, comments);
     res.json(newComment)
 };
 

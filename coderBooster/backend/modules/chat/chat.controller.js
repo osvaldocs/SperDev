@@ -1,5 +1,5 @@
 // chat.controller.js
-import db from "./db.js";
+import db from "../../db.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI("AIzaSyApvToRId4SSkxyMLZIjj-HktBHC0Umv0s");
