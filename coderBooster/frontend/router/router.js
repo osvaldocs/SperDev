@@ -3,18 +3,28 @@ import { routes } from './routes.js';
 import { LoginUser } from '../features/auth/login.js';
 import { initHome } from '../features/home/home.js';
 
+// ✅ Lista de rutas protegidas
+const protectedRoutes = ['/home', '/videos', '/workshop'];
+
 export async function navigate(path) {
   console.log('🔍 Router: navigate() called with path:', path);
   const content = document.getElementById('app-content');
   const route = routes[path] || routes["/"];
 
   try {
-    // Actualiza la URL
+    // 🔒 Comprobar autenticación
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (protectedRoutes.includes(path) && !user) {
+      console.warn("🔒 Acceso denegado. Redirigiendo a /login...");
+      return navigate("/login");
+    }
+
+    // Actualiza la URL sin recargar
     if (window.location.pathname !== path) {
       window.history.pushState({}, "", path);
     }
 
-    // Carga la vista HTML
+    // Cargar el archivo HTML correspondiente
     const response = await fetch(route);
     if (!response.ok) throw new Error(`No se pudo cargar la página: ${route}`);
 
@@ -34,13 +44,13 @@ export async function navigate(path) {
   }
 }
 
-// ✅ Mostrar/ocultar sidebar según página
+// ✅ Mostrar u ocultar sidebar según página
 function handleSidebarVisibility(path) {
   const sidebar = document.getElementById('sidebar');
   const mainContent = document.getElementById('main-content');
   const appContent = document.getElementById('app-content');
 
-  if (path === '/') {
+  if (path === '/' || path === '/login') {
     sidebar?.classList.add('hidden');
     mainContent?.classList.add('full-width');
     appContent?.classList.add('login-fullscreen');
@@ -51,7 +61,7 @@ function handleSidebarVisibility(path) {
   }
 }
 
-// ✅ Ejecutar función según ruta
+// ✅ Ejecutar lógica específica de cada página
 function runPageScript(path) {
   switch (path) {
     case '/':
@@ -62,40 +72,39 @@ function runPageScript(path) {
 
     case '/home':
       console.log('🚀 Inicializando Home...');
-      initHome()
+      initHome();
       break;
 
     case '/videos':
       console.log('🚀 Inicializando Videos...');
-
       break;
 
     case '/workshop':
       console.log('🚀 Inicializando Workshop...');
-
       break;
 
     default:
-      console.log('⚠️ No script definido para esta ruta.');
+      console.log('⚠️ No hay script definido para esta ruta.');
   }
 }
 
-// ✅ Cargar página inicial según sesión
+// ✅ Mantener sesión si recargas
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  if (window.location.pathname === "/" && user) {
+  const currentPath = window.location.pathname;
+
+  if ((currentPath === "/" || currentPath === "/login") && user) {
     console.log("✅ Usuario detectado, redirigiendo a /home");
-    navigate("/home");
-    return;
+    return navigate("/home");
   }
-  navigate(window.location.pathname);
+
+  navigate(currentPath);
 });
 
-// ✅ Soporte para navegación con botones del navegador
+// ✅ Soporte para el botón atrás/adelante del navegador
 window.addEventListener('popstate', () => {
   navigate(window.location.pathname);
 });
 
-// ✅ Función global para navegar
+// ✅ Función global
 window.navigateTo = navigate;
-

@@ -5,28 +5,43 @@ const API_URL = "http://localhost:3000/auth";
 
 export function LoginUser() {
   const form = document.getElementById("login-form");
-  if (!form) {
-    console.warn("login-form no encontrado.");
-    return;
+  const logoutBtn = document.getElementById("logout-btn");
+
+  // 🔐 Verificar si ya hay sesión activa
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    console.log(`Sesión activa: ${user.email}`);
+    navigate("/home");
   }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  // 📝 Evento de login
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-    try {
-      const res = await post(API_URL, { email, user_password: password });
-      if (res.user) {
-        localStorage.setItem("user", JSON.stringify(res.user));
-        console.log(localStorage.getItem("user"));
-        console.log(`Login successful. Welcome, ${res.user.email}`);
-        navigate("/home"); // ✅ Navegamos solo si hay login
-      } else {
-        console.log(`Login failed: ${res.message || "Invalid credentials"}`);
+      try {
+        const res = await post(API_URL, { email, user_password: password });
+        if (res.user) {
+          localStorage.setItem("user", JSON.stringify(res.user));
+          console.log(`Login exitoso. Bienvenido, ${res.user.email}`);
+          navigate("/home"); 
+        } else {
+          console.log(`Login fallido: ${res.message || "Credenciales inválidas"}`);
+        }
+      } catch (error) {
+        console.error("Error durante el login:", error);
       }
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
-  });
+    });
+  }
+
+  // 🚪 Evento de logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("user");
+      console.log("Sesión cerrada.");
+      navigate("/login");
+    });
+  }
 }
