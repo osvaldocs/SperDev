@@ -1,0 +1,72 @@
+<!-- Workshop Gallery View -->
+<div class="view-container">
+    <h2 class="h3 fw-bold text-primary mb-4">Workshop Gallery</h2>
+    
+    <!-- Workshop Grid -->
+    <div class="workshop-grid">
+        <div class="row g-4" id="workshopGrid">
+            <!-- Workshop items will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<!-- Workshop Modal Template -->
+<div class="modal fade" id="workshopModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workshopModalTitle">Workshop Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="workshop-thumbnail rounded" id="workshopModalThumbnail" style="height: 200px;">
+                            <div class="play-button d-flex align-items-center justify-content-center h-100">
+                                <i class="bi bi-play-circle-fill text-white display-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-bold">Description</h6>
+                        <p class="text-muted" id="workshopModalDescription">Workshop description...</p>
+                        
+                        <div class="workshop-stats mb-3">
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <small class="text-muted">Duration</small>
+                                    <div class="fw-bold" id="workshopModalDuration">Duration</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Level</small>
+                                    <div class="fw-bold" id="workshopModalLevel">Level</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Instructor</small>
+                                    <div class="fw-bold" id="workshopModalInstructor">Instructor</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Rating</small>
+                                    <div class="fw-bold" id="workshopModalRating">
+                                        <i class="bi bi-star-fill text-warning me-1"></i><span id="workshopModalRatingValue">Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="workshop-tags">
+                            <small class="text-muted">Tags:</small>
+                            <div class="mt-1" id="workshopModalTags">
+                                <!-- Tags will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="workshopManager.enrollWorkshop()">Start Learning</button>
+            </div>
+        </div>
+    </div>
+</div>

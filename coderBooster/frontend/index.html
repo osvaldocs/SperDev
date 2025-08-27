@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoderBoost - Boost Your Programming Knowledge</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-3">
+            <!-- Logo CB para todas las páginas -->
+            <div class="text-center mb-5 mt-3">
+                <div>
+                    <img src="assets/Logoblanco CoderBoost.png" alt="CoderBoost Logo" class="logo-sidebar">
+                </div>
+            </div>
+
+            <nav class="nav flex-column">
+                <a href="#" onclick="navigateTo('/')"
+                    class="nav-item nav-link text-white text-center mb-2 rounded">
+                    <i class="bi bi-house-door-fill fs-5"></i>
+                </a>
+                <a href="#" onclick="navigateTo('/videos')"
+                    class="nav-item nav-link text-white text-center mb-2 rounded">
+                    <i class="bi bi-camera-video-fill fs-5"></i>
+                </a>
+                <a href="#" onclick="navigateTo('/workshop')"
+                    class="nav-item nav-link text-white text-center mb-2 rounded">
+                    <i class="bi bi-images fs-5"></i>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Content Container -->
+        <div id="app-content">
+            <!-- Views will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Main App -->
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
+de soba
