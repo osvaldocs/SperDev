@@ -30,100 +30,16 @@
             <div class="comments-section">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="fw-bold mb-3">Comments (3)</h5>
-                        
-                        <!-- Comment Form -->
-                        <div class="comment-form mb-4">
-                            <div class="d-flex gap-3">
-                                <div class="flex-shrink-0">
-                                    <div class="avatar bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <span class="text-white fw-bold">U</span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <textarea class="form-control" id="commentInput" rows="3" placeholder="Add a comment..."></textarea>
-                                    <div class="d-flex justify-content-end mt-2">
-                                        <button class="btn btn-primary btn-sm" onclick="videoManager.addComment()">
-                                            <i class="bi bi-send me-1"></i>Post Comment
-                                        </button>
-                                    </div>
-                                </div>
+                        <div id="comentarios">
+                            <h3>Comments</h3>
+
+                            <div id="listaComentarios">
+                                <!-- Comentarios aquí -->
                             </div>
-                        </div>
-                        
-                        <!-- Comments List -->
-                        <div id="commentsList">
-                            <!-- Comment 1 -->
-                            <div class="comment-item d-flex gap-3 mb-3">
-                                <div class="flex-shrink-0">
-                                    <div class="avatar bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <span class="text-white fw-bold">JS</span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex align-items-center gap-2 mb-1">
-                                        <h6 class="mb-0 fw-bold">John Smith</h6>
-                                        <small class="text-muted">2 hours ago</small>
-                                    </div>
-                                    <p class="mb-2">This explanation of variables was really clear! The examples helped me understand the concept much better.</p>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-primary" onclick="videoManager.likeComment(1)">
-                                            <i class="bi bi-hand-thumbs-up me-1"></i>Like (2)
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary" onclick="videoManager.replyComment(1)">
-                                            <i class="bi bi-reply me-1"></i>Reply
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <textarea id="nuevoComentario" placeholder="Write your comment..."></textarea>
                             
-                            <!-- Comment 2 -->
-                            <div class="comment-item d-flex gap-3 mb-3">
-                                <div class="flex-shrink-0">
-                                    <div class="avatar bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <span class="text-white fw-bold">MJ</span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex align-items-center gap-2 mb-1">
-                                        <h6 class="mb-0 fw-bold">Maria Johnson</h6>
-                                        <small class="text-muted">1 day ago</small>
-                                    </div>
-                                    <p class="mb-2">Great tutorial! I've been struggling with this topic and this video made it click for me.</p>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-primary" onclick="videoManager.likeComment(2)">
-                                            <i class="bi bi-hand-thumbs-up me-1"></i>Like (1)
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary" onclick="videoManager.replyComment(2)">
-                                            <i class="bi bi-reply me-1"></i>Reply
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Comment 3 -->
-                            <div class="comment-item d-flex gap-3 mb-3">
-                                <div class="flex-shrink-0">
-                                    <div class="avatar bg-info rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <span class="text-white fw-bold">AK</span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex align-items-center gap-2 mb-1">
-                                        <h6 class="mb-0 fw-bold">Alex Kim</h6>
-                                        <small class="text-muted">3 days ago</small>
-                                    </div>
-                                    <p class="mb-2">Could you make more videos about advanced topics? This was perfect for beginners!</p>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-primary" onclick="videoManager.likeComment(3)">
-                                            <i class="bi bi-hand-thumbs-up me-1"></i>Like (0)
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary" onclick="videoManager.replyComment(3)">
-                                            <i class="bi bi-reply me-1"></i>Reply
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button id="btnPublicar">Publicar</button>
                         </div>
                     </div>
                 </div>
@@ -143,3 +59,5 @@
         </div>
     </div>
 </div>
+
+<script type="module" src="../features/comments/main.js"></script>
