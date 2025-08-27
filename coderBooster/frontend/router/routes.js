@@ -1,6 +1,8 @@
 // frontend/router/routes.js
 export const routes = {
-  "/": "./views/home.html",
+   
+  "/": "./views/login.html",
+  "/home": "./views/home.html",
 
   "/videos": "./views/videoplayer.html",
   "/workshop": "./views/workshop.html"

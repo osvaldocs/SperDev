@@ -8,7 +8,7 @@ import cloudinary from "./cloudinary.js";
 import searchVideos from "./modules/search/search.routes.js";
 import Comments from "./modules/comments/comment.routes.js"
 import chatRoute from "./modules/chat/chat.routes.js";
-import authRoutes from "./modules/auth/routes.js";
+import authRoutes from "./modules/auth/auth.routes.js";
 dotenv.config();
 cloudinary.config();
 
