@@ -98,3 +98,4 @@ window.addEventListener('popstate', () => {
 
 // ✅ Función global para navegar
 window.navigateTo = navigate;
+
