@@ -133,6 +133,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 1rem;
+    padding-right: 52px; /* Reserva espacio para el botón */
+    height: 48px;
     border-radius: 0.75rem;
 }
 
@@ -149,19 +151,26 @@ body {
 .search-btn {
     position: absolute;
     right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.2);
+    top: 4px; /* Centrado sin translate (48px input, 40px botón) */
+    background-color: rgba(222, 221, 221, 0.55); /* Más contraste */
     border: none;
     color: white;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: white;
+    background-color: rgba(105, 143, 234, 0.35); /* Aún más contraste al hover */
+    color: rgb(74, 70, 70);
+    /* Solo scale, sin translate */
+    transform: scale(1.2);
+    box-shadow: none;
 }
 
 /* Tarjetas de categorías */
@@ -364,6 +373,15 @@ body {
 .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Overrides específicos para el botón de búsqueda (después de .btn:hover) */
+.search-btn { transform-origin: center; }
+
+.search-btn:hover,
+.btn.search-btn:hover {
+    transform: scale(1.2) !important; /* sin translate */
+    box-shadow: none !important;
 }
 
 /* Estilos para formularios */
