@@ -1,6 +1,7 @@
 import { routes } from './routes.js';
 import { LoginUser } from '../features/auth/login.js';
 import { initHome } from '../features/home/home.js';
+import { initWorkshop } from '../features/workshops/workshops.js';
 
 const protectedRoutes = ['/home', '/videos', '/workshop'];
 
@@ -71,6 +72,7 @@ function runPageScript(path) {
 
     case '/workshop':
       console.log('Initializing Workshop...');
+      setTimeout(() => initWorkshop(), 0); // Espera a que el HTML se inserte
       break;
 
     default:

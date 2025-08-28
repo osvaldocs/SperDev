@@ -7,14 +7,12 @@ export function LoginUser() {
   const form = document.getElementById("login-form");
   const logoutBtn = document.getElementById("logout-btn");
 
-  // 🔐 Verificar si ya hay sesión activa
   const user = JSON.parse(localStorage.getItem("user"));
   if (user) {
-    console.log(`Sesión activa: ${user.email}`);
+    console.log(`Active session: ${user.email}`);
     navigate("/home");
   }
 
-  // 📝 Evento de login
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -25,22 +23,21 @@ export function LoginUser() {
         const res = await post(API_URL, { email, user_password: password });
         if (res.user) {
           localStorage.setItem("user", JSON.stringify(res.user));
-          console.log(`Login exitoso. Bienvenido, ${res.user.email}`);
+          console.log(`Login successful. Welcome, ${res.user.email}`);
           navigate("/home"); 
         } else {
-          console.log(`Login fallido: ${res.message || "Credenciales inválidas"}`);
+          console.log(`Login failed: ${res.message || "Invalid credentials"}`);
         }
       } catch (error) {
-        console.error("Error durante el login:", error);
+        console.error("Error during login:", error);
       }
     });
   }
 
-  // 🚪 Evento de logout
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("user");
-      console.log("Sesión cerrada.");
+      console.log("Session closed.");
       navigate("/login");
     });
   }
