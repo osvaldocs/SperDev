@@ -1,6 +1,6 @@
 import { routes } from './routes.js';
 import { LoginUser } from '../features/auth/login.js';
-import { initHome } from '../features/home/home.js';
+import { homeUsers } from '../features/home/home.js';
 import { initWorkshop } from '../features/workshops/workshops.js';
 
 const protectedRoutes = ['/home', '/videos', '/workshop'];
@@ -63,7 +63,7 @@ function runPageScript(path) {
 
     case '/home':
       console.log('Initializing Home...');
-      initHome();
+      homeUsers();
       break;
 
     case '/videos':

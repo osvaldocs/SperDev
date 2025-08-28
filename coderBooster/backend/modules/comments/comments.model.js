@@ -15,26 +15,26 @@ export const getAllComments = async (id_video) => {
 };
 
 
-export const postComments = async () => {
-    
-    const query = `INSERT INTO comments (id_user, id_video, comments, comment_date) VALUES (?, ?, ?, NOW())`;
+export const postComments = async (id_user, id_video, comments) => {
+  const query = `
+    INSERT INTO comments (id_user, id_video, comments, comment_date)
+    VALUES (?, ?, ?, NOW())
+  `;
+  const [result] = await db.query(query, [id_user, id_video, comments]);
 
-    const [result] = await db.query(query, [id_user, id_video, comments]);
+  const newCommentId = result.insertId;
 
-    const newCommentId = result.insertId;
-    
-    const query2 = `
-            SELECT c.id_comment, c.id_video, c.id_user, c.comments, c.comment_date, u.nickname
-            FROM comments c
-            JOIN users u ON c.id_user = u.id_user
-            WHERE c.id_comment = ?
-        `;
-    
-    const [rows] = await db.query(query2, [newCommentId]);
+  const query2 = `
+    SELECT c.id_comment, c.id_video, c.id_user, c.comments, c.comment_date, u.nickname
+    FROM comments c
+    JOIN users u ON c.id_user = u.id_user
+    WHERE c.id_comment = ?
+  `;
+  const [rows] = await db.query(query2, [newCommentId]);
 
-    return rows[0];
-
+  return rows[0];
 };
+
 
 
 export const updateComments = async (id_comment, commentData ) => {
