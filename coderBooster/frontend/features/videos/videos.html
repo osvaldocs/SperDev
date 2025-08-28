@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | CoderBoost</title>
+</head>
+<body>
+  <div id="home">
+    <!-- Botón para abrir el modal -->
+    <button id="openModalBtn">Upload video</button>
+
+    <!-- Modal para subir video -->
+    <div id="uploadModal" style="display:none;">
+      <div class="modal-content">
+        <h2>Upload a new video</h2>
+        <form id="uploadVideoForm">
+          <label for="videoFile">Video file:</label>
+          <input type="file" id="videoFile" name="videoFile" accept="video/*" required><br><br>
+
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required><br><br>
+
+          <label for="category">Category:</label>
+          <select id="category" name="category" required>
+            <option value="">Loading categories...</option>
+          </select><br><br>
+
+          <label for="user">Speaker (TL):</label>
+          <select id="user" name="user" required>
+            <option value="">Loading speakers...</option>
+          </select><br><br>
+
+          <button type="submit">Submit</button>
+          <button type="button" id="closeModalBtn">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="./videos.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 import cloudinary from "../../cloudinary.js";
 import db from "../../db.js"; // Database connection
 import { getAllVideos, updateVideo, deleteVideo } from "./videos.model.js";
+import fs from "fs";
 
 export const createVideo = async (req, res) => {
     try {

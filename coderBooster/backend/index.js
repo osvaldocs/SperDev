@@ -4,6 +4,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import videosRoutes from "./modules/videos/videos.routes.js";
+import categoriesRoutes from "./modules/categories/categories.routes.js";
+import speakersRoutes from "./modules/speakers/speakers.routes.js";
 import cloudinary from "./cloudinary.js";
 import searchVideos from "./modules/search/search.routes.js";
 import Comments from "./modules/comments/comment.routes.js"
@@ -19,6 +21,8 @@ app.use(express.json()); // To handle JSON in requests
 
 // Routes
 app.use("/videos", videosRoutes);
+app.use("/categories", categoriesRoutes);
+app.use("/speakers", speakersRoutes);
 app.use("/search", searchVideos);
 app.use("/comment", Comments)
 app.use("/chat", chatRoute);
