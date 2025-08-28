@@ -1,10 +1,27 @@
 import { getComments, createComment, updateComment, deleteComment } from './comments.js';
 
-// Usuario y video simulados (reemplazar con valores reales si tienes login/sesión)
-const currentUserId = 1;
-const currentVideoId = 1;
+// Usuario y video reales desde localStorage
+const currentUserId = JSON.parse(localStorage.getItem("user"))?.id_user;
+const currentVideoId = 1; // Por ahora hardcodeado, se puede hacer dinámico después
+
+// Bandera para evitar inicializaciones múltiples
+let isInitialized = false;
 
 export function initComments() {
+  // Evitar inicializaciones múltiples
+  if (isInitialized) {
+    console.log('⚠️ Sistema de comentarios ya inicializado, saltando...');
+    return;
+  }
+
+  // Verificar que el usuario esté logueado
+  if (!currentUserId) {
+    console.error('Usuario no logueado, no se pueden cargar comentarios');
+    return;
+  }
+
+  console.log('Usuario logueado con ID:', currentUserId);
+
   // Referencias a los elementos del DOM dentro de videoplayer.html, ya cargados
   const listaComentarios = document.getElementById('listaComentarios');
   const textareaComentario = document.getElementById('nuevoComentario');
@@ -151,4 +168,8 @@ export function initComments() {
 
   // Carga inicial de comentarios
   cargarComentarios();
+
+  // Marcar como inicializado para evitar duplicados
+  isInitialized = true;
+  console.log('✅ Sistema de comentarios inicializado completamente');
 }

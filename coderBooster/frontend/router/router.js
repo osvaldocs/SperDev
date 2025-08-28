@@ -68,6 +68,11 @@ function runPageScript(path) {
 
     case '/videos':
       console.log('Initializing Videos...');
+      setTimeout(() => {
+        import('../features/comments/main.js').then(module => {
+          module.initComments();
+        });
+      }, 100); // Esperar a que el HTML se inserte
       break;
 
     case '/workshop':
