@@ -27,9 +27,9 @@ export async function post(url, body) {
 
 
 
-export async function update(url, id, body) {
+export async function update(url, body) {
   try {
-    const response = await fetch(`${url}/${id}`, {
+    const response = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -46,9 +46,9 @@ export async function update(url, id, body) {
   }
 }
 
-export async function deletes(url, id) {
+export async function deletes(url) {
   try {
-    const response = await fetch(`${url}/${id}`, {
+    const response = await fetch(url, {
       method: "DELETE"
     });
 

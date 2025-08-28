@@ -132,6 +132,12 @@ export function initComments() {
         }
 
         try {
+          console.log('🔍 Frontend - Enviando UPDATE:', {
+            id_comment,
+            id_user: currentUserId,
+            comments: nuevoTexto
+          });
+          
           await updateComment(id_comment, {
             id_user: currentUserId,
             comments: nuevoTexto,

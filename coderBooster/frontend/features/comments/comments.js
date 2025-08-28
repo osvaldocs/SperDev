@@ -18,11 +18,11 @@ export async function createComment({ id_user, id_video, comments }) {
 export async function updateComment(id_comment, { id_user, comments }) {
   const url = `${BASE_URL}/${id_comment}`;
   const body = { id_user, comments };
-  return await update(BASE_URL, id_comment, body);
+  return await update(url, body);
 }
 
 // Borrar comentario
-export async function deleteComment(id_comment, id_user) {
-  const url = `${BASE_URL}/${id_comment}?id_user=${id_user}`;
-  return await deletes(url, ""); // El segundo argumento no se usa en tu función deletes
+export async function deleteComment(id_comment) {
+  const url = `${BASE_URL}/${id_comment}`;
+  return await deletes(url);
 }
