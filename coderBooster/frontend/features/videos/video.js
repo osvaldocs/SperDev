@@ -15,10 +15,24 @@ export function initVideoPlayer() {
       return;
     }
 
-    // Renderizar el video seleccionado
-    placeholder.innerHTML = `
-      <video src="${videoData.url}" controls class="w-100 rounded" style="max-height: 420px;"></video>
-    `;
+    // Crear el elemento video y reemplazar el placeholder completo para quitar fondo/bordes
+    const videoEl = document.createElement('video');
+    videoEl.src = videoData.url;
+    videoEl.controls = true;
+    videoEl.className = 'w-100';
+    videoEl.style.maxHeight = '420px';
+    videoEl.style.borderRadius = '12px';
+
+    const parent = placeholder.parentNode;
+    if (parent) {
+      parent.replaceChild(videoEl, placeholder);
+    } else {
+      // Fallback: si no hay padre, al menos limpia clases/styles del placeholder y embebe video
+      placeholder.className = '';
+      placeholder.style.cssText = '';
+      placeholder.innerHTML = '';
+      placeholder.appendChild(videoEl);
+    }
     titleEl.textContent = videoData.title || 'Video seleccionado';
   } catch (err) {
     console.error('Error inicializando el reproductor:', err);
