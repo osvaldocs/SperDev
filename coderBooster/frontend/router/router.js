@@ -2,6 +2,7 @@ import { routes } from './routes.js';
 import { LoginUser } from '../features/auth/login.js';
 import { homeUsers } from '../features/home/home.js';
 import { initWorkshop } from '../features/workshops/workshops.js';
+import { initVideoPlayer } from '../features/videos/video.js';
 
 const protectedRoutes = ['/home', '/videos', '/workshop'];
 
@@ -69,6 +70,7 @@ function runPageScript(path) {
     case '/videos':
       console.log('Initializing Videos...');
       setTimeout(() => {
+        initVideoPlayer();
         import('../features/comments/main.js').then(module => {
           module.initComments();
         });

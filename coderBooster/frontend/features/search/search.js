@@ -3,6 +3,7 @@ import { navigate } from "../../router/router.js";
 const urlSearch = "http://localhost:3000/search";
 const urlVideos = "http://localhost:3000/videos";
 
+
 export function homeUsers() {
   const searchBtn = document.getElementById("searchbtn");
   const resultsContainer = document.getElementById("searchResults");
@@ -47,17 +48,12 @@ export function homeUsers() {
               if (!item?.url) return "";
               return `
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <div class="card h-100 shadow-sm border-0 overflow-hidden" style="border-radius: 12px;">
-                    <div class="position-relative">
-                      <div class="ratio ratio-16x9">
-                        <video src="${item.url}" style="border-top-left-radius: 12px; border-top-right-radius: 12px; cursor: pointer;" 
-                          onclick="navigateTo('/videos'); localStorage.setItem('currentVideo', JSON.stringify({ title: '${item.title?.replace(/'/g, "\\'")}', url: '${item.url?.replace(/'/g, "\\'")}' }));"></video>
-                      </div>
-                      <span class="position-absolute top-0 start-0 m-2 badge bg-primary">▶️</span>
+                  <div class="card h-100 shadow-sm">
+                    <div class="ratio ratio-16x9">
+                      <video src="${item.url}" controls style="border-top-left-radius: .5rem; border-top-right-radius: .5rem;"></video>
                     </div>
-                    <div class="card-body p-3">
-                      <h6 class="card-title fw-bold mb-1 text-truncate" title="${item.title}">🎬 ${item.title}</h6>
-                      <p class="card-text small text-muted mb-0 text-truncate" title="${item.summary || ''}">${item.summary || ''}</p>
+                    <div class="card-body p-2">
+                      <h6 class="card-title mb-0 text-truncate" title="${item.title}">${item.title}</h6>
                     </div>
                   </div>
                 </div>
@@ -74,4 +70,3 @@ export function homeUsers() {
     }
   });
 }
-
