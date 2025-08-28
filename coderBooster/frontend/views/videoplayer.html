@@ -37,24 +37,28 @@
                                 <!-- Comentarios aquí -->
                             </div>
 
-                            <textarea id="nuevoComentario" placeholder="Write your comment..."></textarea>
-                            
-                            <button id="btnPublicar">Publicar</button>
+                            <div id="commentEditor" class="comment-editor mt-2">
+                                <textarea id="nuevoComentario" class="form-control" rows="2" placeholder="Write your comment..."></textarea>
+                                <div class="comment-actions mt-2">
+                                    <button id="btnPublicar" class="btn btn-primary btn-sm">Post</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Right Column: Chat Space (Future Implementation) -->
+        <!-- Right Column: Chat Space aligned with layout -->
         <div class="chat-space">
-            <div class="chat-placeholder">
-                <div class="text-center text-muted py-5">
-                    <i class="bi bi-chat-dots display-4"></i>
-                    <h5 class="mt-3">AI Chat Assistant</h5>
-                    <p class="mb-0">Chat functionality coming soon!</p>
-                    <small class="text-muted">Ask questions about the video content</small>
-                </div>
+            <div class="chat-placeholder p-3">
+                <h5 class="text-center mb-3">Chat AI</h5>
+                <div id="messages" aria-live="polite"></div>
+                <form id="form" class="d-flex align-items-center gap-2 mt-2" onsubmit="return false;">
+                    <input id="input" type="text" placeholder="Escribí tu mensaje..." autocomplete="off" class="form-control" />
+                    <button id="send-btn" type="button">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

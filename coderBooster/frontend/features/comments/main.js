@@ -32,6 +32,8 @@ export function initComments() {
     return;
   }
 
+  // Botón siempre visible; el input es el protagonista visual
+
   async function cargarComentarios() {
     try {
       const comentarios = await getComments(currentVideoId);
@@ -49,39 +51,102 @@ export function initComments() {
     const div = document.createElement('div');
     div.className = 'comentario';
 
-    const nombreElem = document.createElement('div');
+    // Header con avatar (inicial) + nickname
+    const header = document.createElement('div');
+    header.className = 'comment-header';
+
+    const avatar = document.createElement('span');
+    avatar.className = 'avatar-initials';
+    const firstLetter = (nickname || '?').trim().charAt(0).toUpperCase();
+    avatar.textContent = firstLetter || '?';
+
+    const nombreElem = document.createElement('span');
     nombreElem.className = 'nombre';
-    nombreElem.textContent = nickname;
+    nombreElem.textContent = nickname || 'User';
+
+    header.appendChild(avatar);
+    header.appendChild(nombreElem);
 
     const textoElem = document.createElement('div');
     textoElem.className = 'texto';
     textoElem.textContent = comments;
 
+    // Botonera (solo visible para el autor)
     const botonesDiv = document.createElement('div');
-    botonesDiv.className = 'botonesComentario';
+    botonesDiv.className = 'botonesComentario d-flex gap-2 mt-2 justify-content-end';
 
     const btnEditar = document.createElement('button');
-    btnEditar.textContent = 'Editar';
+    btnEditar.textContent = 'Edit';
+    btnEditar.className = 'btn btn-primary btn-sm';
 
     const btnBorrar = document.createElement('button');
-    btnBorrar.textContent = 'Borrar';
+    btnBorrar.textContent = 'Delete';
+    btnBorrar.className = 'btn btn-primary btn-sm';
 
     if (id_user === currentUserId) {
       btnEditar.onclick = () => editarComentario(div, id_comment, textoElem, btnEditar);
       btnBorrar.onclick = () => borrarComentario(div, id_comment);
-    } else {
-      btnEditar.disabled = true;
-      btnBorrar.disabled = true;
+      botonesDiv.appendChild(btnEditar);
+      botonesDiv.appendChild(btnBorrar);
     }
 
-    botonesDiv.appendChild(btnEditar);
-    botonesDiv.appendChild(btnBorrar);
-
-    div.appendChild(nombreElem);
+    div.appendChild(header);
     div.appendChild(textoElem);
-    div.appendChild(botonesDiv);
+    if (id_user === currentUserId) {
+      div.appendChild(botonesDiv);
+    }
 
     return div;
+  }
+  async function borrarComentario(div, id_comment) {
+    if (!confirm('¿Seguro que quieres borrar este comentario?')) return;
+
+    try {
+      const result = await deleteComment(id_comment, currentUserId);
+      if (result) {
+        div.remove();
+      } else {
+        alert('No se pudo borrar el comentario');
+      }
+    } catch (error) {
+      alert('Error al borrar comentario');
+      console.error(error);
+    }
+  }
+
+  function editarComentario(div, id_comment, textoElem, btnEditar) {
+    if (btnEditar.textContent === 'Edit') {
+      const inputTextoEdit = document.createElement('textarea');
+      inputTextoEdit.value = textoElem.textContent;
+      inputTextoEdit.style.width = '100%';
+      inputTextoEdit.style.marginTop = '5px';
+
+      div.replaceChild(inputTextoEdit, textoElem);
+      btnEditar.textContent = 'Save';
+
+      btnEditar.onclick = async () => {
+        const nuevoTexto = inputTextoEdit.value.trim();
+        if (!nuevoTexto) {
+          alert('El comentario no puede estar vacío');
+          return;
+        }
+
+        try {
+          await updateComment(id_comment, {
+            id_user: currentUserId,
+            comments: nuevoTexto,
+          });
+
+          textoElem.textContent = nuevoTexto;
+          div.replaceChild(textoElem, inputTextoEdit);
+          btnEditar.textContent = 'Edit';
+          btnEditar.onclick = () => editarComentario(div, id_comment, textoElem, btnEditar);
+        } catch (error) {
+          alert('Error al guardar comentario');
+          console.error(error);
+        }
+      };
+    }
   }
 
   async function agregarComentario() {
@@ -113,56 +178,7 @@ export function initComments() {
     }
   }
 
-  async function borrarComentario(div, id_comment) {
-    if (!confirm('¿Seguro que quieres borrar este comentario?')) return;
 
-    try {
-      const result = await deleteComment(id_comment, currentUserId);
-      if (result) {
-        div.remove();
-      } else {
-        alert('No se pudo borrar el comentario');
-      }
-    } catch (error) {
-      alert('Error al borrar comentario');
-      console.error(error);
-    }
-  }
-
-  function editarComentario(div, id_comment, textoElem, btnEditar) {
-    if (btnEditar.textContent === 'Editar') {
-      const inputTextoEdit = document.createElement('textarea');
-      inputTextoEdit.value = textoElem.textContent;
-      inputTextoEdit.style.width = '100%';
-      inputTextoEdit.style.marginTop = '5px';
-
-      div.replaceChild(inputTextoEdit, textoElem);
-      btnEditar.textContent = 'Guardar';
-
-      btnEditar.onclick = async () => {
-        const nuevoTexto = inputTextoEdit.value.trim();
-        if (!nuevoTexto) {
-          alert('El comentario no puede estar vacío');
-          return;
-        }
-
-        try {
-          await updateComment(id_comment, {
-            id_user: currentUserId,
-            comments: nuevoTexto,
-          });
-
-          textoElem.textContent = nuevoTexto;
-          div.replaceChild(textoElem, inputTextoEdit);
-          btnEditar.textContent = 'Editar';
-          btnEditar.onclick = () => editarComentario(div, id_comment, textoElem, btnEditar);
-        } catch (error) {
-          alert('Error al guardar comentario');
-          console.error(error);
-        }
-      };
-    }
-  }
 
   btnPublicar.addEventListener('click', agregarComentario);
 
