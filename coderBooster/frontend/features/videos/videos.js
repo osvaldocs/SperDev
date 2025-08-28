@@ -1,7 +1,7 @@
 // Lógica para abrir/cerrar el modal y manejar el formulario de subida de video
 
 document.addEventListener('DOMContentLoaded', function() {
-  const openModalBtn = document.getElementById('openModalBtn');
+  const openModalBtn = document.getElementById('buttonupload');
   const uploadModal = document.getElementById('uploadModal');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const uploadVideoForm = document.getElementById('uploadVideoForm');
